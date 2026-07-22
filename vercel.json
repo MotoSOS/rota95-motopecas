@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/motopecas/:path*",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/config.js": { "maxDuration": 10 },
+    "api/checkout/asaas.js": { "maxDuration": 60 },
+    "api/orders/status.js": { "maxDuration": 15 },
+    "api/admin/orders.js": { "maxDuration": 30 },
+    "api/webhooks/asaas.js": { "maxDuration": 30 }
+  }
+}
