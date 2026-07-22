@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/motopecas/:path*",
@@ -21,11 +22,20 @@
     }
   ],
   "functions": {
+    "api/config.js": {
+      "maxDuration": 10
+    },
     "api/checkout/asaas.js": {
       "maxDuration": 60
     },
-    "api/**/*.js": {
+    "api/orders/status.js": {
       "maxDuration": 15
+    },
+    "api/admin/orders.js": {
+      "maxDuration": 30
+    },
+    "api/webhooks/asaas.js": {
+      "maxDuration": 30
     }
   }
 }
